@@ -18,10 +18,8 @@ import numpy as np
 def compute_output_size_1d(input_array, kernel_array):
     inp = np.asarray(input_array)
     kernel = np.asarray(kernel_array)
-    return len(input) - len(kernel) +1
+    return len(input_array) - len(kernel_array) +1
     
-
-
 # -----------------------------------------------
 # Example:
 input_array = np.array([1, 2, 3, 4, 5])
@@ -43,14 +41,13 @@ def convolve_1d(input_array, kernel_array):
     inp = np.asarray(input_array)
     kernel = np.asarray(kernel_array)
     out_length = compute_output_size_1d(inp, kernel)
-    out = np.zeros(out_length)
-    for i in range(out_length):
+    output = np.zeros(out_length) # array full of zeros with the right length
+    for i in range(out_length): # loop over indices 
         window = inp[i : i + len(kernel)]
-        out[i] = np.sum(window * kernel)
-    return out
+        output[i] = np.sum(window * kernel)
+    return output
         
-        
-
+    
 # -----------------------------------------------
 # Another tip: write test cases like this, so you can easily test your function.
 input_array = np.array([1, 2, 3, 4, 5])
@@ -74,6 +71,15 @@ def compute_output_size_2d(input_matrix, kernel_matrix):
     kh, kw = kernel.shape
     return (h - kh + 1, w - kw + 1)
 
+input_matrix = np.array([[1,2,3],
+                         [4,5,6]])
+kernel_matrix = np.array([[1,0,-1],
+                          [0,1,-1]])
+print(compute_output_size_2d(input_matrix, kernel_matrix))
+
+kernel_matrix2 = np.array([[1,0],
+                           [0,1]])
+print(compute_output_size_2d(input_matrix, kernel_matrix2))
 
 # -----------------------------------------------
 
@@ -88,7 +94,17 @@ def compute_output_size_2d(input_matrix, kernel_matrix):
 def convolute_2d(input_matrix, kernel_matrix):
     # Tip: same tips as above, but you might need a nested loop here in order to
     # define which parts of the input matrix need to be multiplied with the kernel matrix.
-    pass
+    inp = np.asarray(input_matrix)
+    kernel = np.asarray(kernel_matrix)
+    out_h, out_w = compute_output_size_2d(inp, kernel)
+    output = np.zeros(out_h, out_w)
+    
+    kh, kw = kernel.shape
+
+    # slide the kernel over the input
+    for 
+
+
 
 
 # -----------------------------------------------
